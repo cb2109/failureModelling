@@ -26,8 +26,8 @@ public class PointAssetTest {
 
         Assert.assertEquals("Top left point is within bounds", 0, assetTopLeft.calculateRisk(map), 0);
         Assert.assertEquals("Bottom right point is within bounds", 0, assetBottomRight.calculateRisk(map), 0);
-        Assert.assertEquals("Top center point is NOT within bounds", 0, assetTopCenter.calculateRisk(map), 1);
-        Assert.assertEquals("Center of the circle is NOT within bounds", 0, assetMiddleCircle.calculateRisk(map), 1);
+        Assert.assertEquals("Top center point is NOT within bounds", 1, assetTopCenter.calculateRisk(map), 0);
+        Assert.assertEquals("Center of the circle is NOT within bounds", 1, assetMiddleCircle.calculateRisk(map), 0);
 
     }
 
@@ -47,14 +47,14 @@ public class PointAssetTest {
         map.addNewRectangle(new Point(1, 1), new Point(3,3), 1, 1);
 
         Assert.assertEquals("Above point is within bounds", 0, assetAbove.calculateRisk(map), 0);
-        Assert.assertEquals("Above inside point is NOT within bounds", 0, assetAboveInside.calculateRisk(map), 1);
+        Assert.assertEquals("Above inside point is NOT within bounds", 1, assetAboveInside.calculateRisk(map), 0);
         Assert.assertEquals("Left point is within bounds", 0, assetLeft.calculateRisk(map), 0);
-        Assert.assertEquals("Left inside point is NOT within bounds", 0, assetLeftInside.calculateRisk(map), 1);
+        Assert.assertEquals("Left inside point is NOT within bounds", 1, assetLeftInside.calculateRisk(map), 0);
         Assert.assertEquals("Below point is within bounds", 0, assetBelow.calculateRisk(map), 0);
-        Assert.assertEquals("Below inside point is NOT within bounds", 0, assetBelowInside.calculateRisk(map), 1);
+        Assert.assertEquals("Below inside point is NOT within bounds", 1, assetBelowInside.calculateRisk(map), 0);
         Assert.assertEquals("Right point is within bounds", 0, assetRight.calculateRisk(map), 0);
-        Assert.assertEquals("Right inside is NOT within bounds", 0, assetRightInside.calculateRisk(map), 1);
-        Assert.assertEquals("Fully inside is NOT within bounds", 0, fullyInside.calculateRisk(map), 1);
+        Assert.assertEquals("Right inside is NOT within bounds", 1, assetRightInside.calculateRisk(map), 0);
+        Assert.assertEquals("Fully inside is NOT within bounds", 1, fullyInside.calculateRisk(map), 0);
     }
 
 }

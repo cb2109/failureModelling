@@ -139,20 +139,12 @@ public class EquationRiskMap implements RiskMap {
         private final Point topLeftCorner;
         private final Point bottomRightCorner;
 
-        private final double[] leftLine;
-        private final double[] topLine;
-        private final double[] rightLine;
-        private final double[] bottomLine;
 
 
         RectangleEquation(Point topLeftCorner, Point bottomRightCorner, double intensity, double level) {
             super(intensity, level);
             this.topLeftCorner = topLeftCorner;
             this.bottomRightCorner = bottomRightCorner;
-            leftLine = calculateLineEquation(topLeftCorner, new Point(topLeftCorner.x, bottomRightCorner.y));
-            topLine = calculateLineEquation(topLeftCorner, new Point(topLeftCorner.x, bottomRightCorner.y));
-            rightLine = calculateLineEquation(topLeftCorner, new Point(topLeftCorner.x, bottomRightCorner.y));
-            bottomLine = calculateLineEquation(topLeftCorner, new Point(topLeftCorner.x, bottomRightCorner.y));
 
         }
 
@@ -169,46 +161,74 @@ public class EquationRiskMap implements RiskMap {
          */
         @Override
         public boolean contains(Line l) {
+            int maxLineX = Math.max(l.p1.x, l.p2.x);
+            int minLineX = Math.min(l.p1.x, l.p2.x);
+            int maxLineY = Math.max(l.p1.y, l.p2.y);
+            int minLineY = Math.min(l.p1.y, l.p2.y);
+
             double[] lineEq = calculateLineEquation(l.p1, l.p2);
-            double[][] squareEdges = new double[][] {
-                    leftLine,
-                    topLine,
-                    rightLine,
-                    bottomLine
-            };
-            for (double[] squareEdge : squareEdges) {
-                double[] intersectPoint = calculateIntersection(lineEq, squareEdge);
-                // check that the intersection point is within the bounds of the square
-                if (topLeftCorner.x <= intersectPoint[0] && intersectPoint[0] <= bottomRightCorner.x
-                        && topLeftCorner.y <= intersectPoint[1] && intersectPoint[1] <= bottomRightCorner.y) {
-                    return true;
-                }
+            double leftIntersectionX = xIntersection(lineEq, topLeftCorner.y);
+            // the line intersects the left side of the square within bounds
+            if (topLeftCorner.x <= leftIntersectionX && leftIntersectionX <= bottomRightCorner.x
+                    && minLineX <= leftIntersectionX && leftIntersectionX <= maxLineX) {
+                return true;
             }
+
+            double rightIntersectionX = xIntersection(lineEq, bottomRightCorner.y);
+            // the line intersects the right side of the square within bounds
+            if (topLeftCorner.x <= rightIntersectionX && rightIntersectionX <= bottomRightCorner.x
+                    && minLineX <= rightIntersectionX && rightIntersectionX <= maxLineX) {
+                return true;
+            }
+
+            double topIntersectionY = yIntersection(lineEq, topLeftCorner.x);
+            // the line intersects the top side of the square within bounds
+            if (topLeftCorner.y <= topIntersectionY && topIntersectionY <= bottomRightCorner.y
+                    && minLineY <= topIntersectionY && topIntersectionY <= maxLineY) {
+                return true;
+            }
+
+            double bottomIntersectionY = yIntersection(lineEq, bottomRightCorner.x);
+            // the line intersects the bottom side of the square within bounds
+            if (topLeftCorner.y <= bottomIntersectionY && bottomIntersectionY <= bottomRightCorner.y
+                    && minLineY <= bottomIntersectionY && bottomIntersectionY <= maxLineY) {
+                return true;
+            }
+
             return false;
+
         }
 
         /*
          * solve the equation for y = mx + c for p1 and p2
          * so that we have an equation for a line
          */
-
         private double[] calculateLineEquation(Point p1, Point p2) {
             double m = ((double) p2.y - p1.y) / (p2.x - p1.x);
             double c = p1.y - (m * p1.x);
             return new double[] {m, c};
         }
 
-        private double[] calculateIntersection(double[] l1, double[] l2) {
-            // find out the point where m1x + c1 = m2x + c2
-            // m1x + c1 - c2 = m2x
-            double cDiff = l1[1] - l2[1];
-            // c1 - c2 = (m2 - m1)x
-            double mDiff = l2[0] - l1[0];
-            // x = (c1 - c2) / (m2 - m1)
-            double x = cDiff / mDiff;
-            // plug calculated x into l1 to get y
-            double y = l1[0] * x + l1[1];
-            return new double[] {x, y};
+        private double xIntersection(double[] line, int yPoint) {
+            double xIntersection;
+            if (Double.isInfinite(line[0])) {
+                // if equation is Infinite * x then we have a vertical line that intersects x at yPoint
+                xIntersection = (double) yPoint;
+            } else {
+                // find out the point where yPoint = mx + c
+                xIntersection = (yPoint - line[1]) / line[0];
+            }
+            return xIntersection;
+        }
+
+        private double yIntersection(double[] line, int xPoint) {
+            if (Double.isInfinite(line[0])) {
+                // if equation is Infinite * x then we have a vertical line that never intersects Y
+                return Double.POSITIVE_INFINITY;
+            } else {
+                // find out the point where y = m * xPoint + c
+                return (line[0] * xPoint) + line[1];
+            }
         }
     }
 }

@@ -22,6 +22,7 @@ public class LineAssetTest {
 
         Asset intersectingLine = new PowerLine(new Line(new Point(5, 5), new Point(15, 15)));
         Asset reversedLine = new PowerLine(new Line(new Point(15, 15), new Point(5, 5)));
+        Asset throughLine = new PowerLine(new Line(new Point(5, 5), new Point(30, 30)));
         Asset topLine = new PowerLine(new Line(new Point(5, 10), new Point(25, 10)));
         Asset leftLine = new PowerLine(new Line(new Point(10, 5), new Point(10, 25)));
         Asset bottomLine = new PowerLine(new Line(new Point(5, 20), new Point(25, 20)));
@@ -31,14 +32,37 @@ public class LineAssetTest {
         Asset outsideLine2 = new PowerLine(new Line(new Point(4, 5), new Point(4, 25)));
 
 
-        Assert.assertEquals("Intersecting line failed", 0, intersectingLine.calculateRisk(map), 1);
-        Assert.assertEquals("Reversed intersecting line failed", 0, reversedLine.calculateRisk(map), 1);
-        Assert.assertEquals("Top line failed", 0, topLine.calculateRisk(map), 1);
-        Assert.assertEquals("Left line failed", 0, leftLine.calculateRisk(map), 1);
-        Assert.assertEquals("Bottom line failed", 0, bottomLine.calculateRisk(map), 1);
-        Assert.assertEquals("Right line failed", 0, rightLine.calculateRisk(map), 1);
+        Assert.assertEquals("Intersecting line failed", 1, intersectingLine.calculateRisk(map), 0);
+        Assert.assertEquals("Reversed intersecting line failed", 1, reversedLine.calculateRisk(map), 0);
+        Assert.assertEquals("Through intersecting line failed", 1, throughLine.calculateRisk(map), 0);
+
+        Assert.assertEquals("Top line failed", 1, topLine.calculateRisk(map), 0);
+        Assert.assertEquals("Left line failed", 1, leftLine.calculateRisk(map), 0);
+        Assert.assertEquals("Bottom line failed", 1, bottomLine.calculateRisk(map), 0);
+        Assert.assertEquals("Right line failed", 1, rightLine.calculateRisk(map), 0);
 
         Assert.assertEquals("Outside line intersected (incorrectly)", 0, outsideLine.calculateRisk(map), 0);
         Assert.assertEquals("Outside line2 intersected (incorrectly)", 0, outsideLine2.calculateRisk(map), 0);
+    }
+
+    @Test
+    public void testLineIntersectionWithCircle() {
+
+        EquationRiskMap map = new EquationRiskMap();
+        map.addNewCircle(new Point(20, 20), 5, 1, 1);
+
+        Asset intersectingLine = new PowerLine(new Line(new Point(5, 5), new Point(20, 20)));
+        Asset tangentalLine = new PowerLine(new Line(new Point(15, 15), new Point(15, 25)));
+
+        Asset noWhereNearLine = new PowerLine(new Line(new Point(0, 0), new Point(10, 10)));
+        Asset nearTangentLine = new PowerLine(new Line(new Point(15, 17), new Point(17, 15)));
+
+        Assert.assertEquals("Intersecting line failed", 1, intersectingLine.calculateRisk(map), 0);
+        Assert.assertEquals("Tangental line failed", 1, tangentalLine.calculateRisk(map), 0);
+
+        Assert.assertEquals("No where near line intersected (incorrectly)", 0, noWhereNearLine.calculateRisk(map), 0);
+        Assert.assertEquals("Nearly tangental line intersected (incorrectly)", 0, nearTangentLine.calculateRisk(map), 0);
+
+
     }
 }
