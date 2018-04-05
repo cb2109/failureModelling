@@ -1,4 +1,4 @@
-package cb2109.failuremodelling;
+package cb2109.failuremodelling.modelling;
 
 import cb2109.failuremodelling.modelling.Line;
 import cb2109.failuremodelling.modelling.assets.Asset;
