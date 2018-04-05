@@ -1,24 +1,22 @@
 package cb2109.failuremodelling.modelling.assets;
 
+import cb2109.failuremodelling.modelling.Line;
 import cb2109.failuremodelling.modelling.riskmaps.RiskMap;
-
-import java.awt.*;
 
 /**
  * Author: Christopher Bates
  * Date: 05/04/2018
  */
-public abstract class PointAsset implements Asset{
+public abstract class LineAsset implements Asset {
 
+    private final Line line;
 
-    private final Point location;
-
-    public PointAsset(Point location) {
-        this.location = location;
+    public LineAsset(Line l) {
+        this.line = l;
     }
 
     public double calculateRisk(RiskMap m) {
-        return m.getRiskFor(location);
+        return m.getRiskFor(line);
     }
 
 }
