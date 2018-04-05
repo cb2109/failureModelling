@@ -33,5 +33,8 @@ public class NoEquation implements Equation {
         return 0;
     }
 
+    @Override
+    public void plot(Graphics g) { }
+
 
 }

@@ -17,5 +17,7 @@ public interface Equation {
 
     double getIntensity();
 
+    void plot(Graphics g);
+
 
 }

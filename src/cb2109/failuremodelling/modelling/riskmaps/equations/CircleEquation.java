@@ -77,4 +77,10 @@ public class CircleEquation extends ShapeEquation {
                 minLineX <= realXInt2 && realXInt2 <= maxLineX
                         && minLineY <= realYInt2 && realYInt2 <= maxLineY;
     }
+
+    @Override
+    public void plot(Graphics g) {
+        int size = (int) Math.round(radius * 2);
+        g.fillOval(center.x, center.y, size, size);
+    }
 }

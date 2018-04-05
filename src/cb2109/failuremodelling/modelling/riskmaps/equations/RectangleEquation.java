@@ -71,6 +71,12 @@ public class RectangleEquation extends ShapeEquation {
 
     }
 
+    @Override
+    public void plot(Graphics g) {
+        int size = bottomRightCorner.x - topLeftCorner.x;
+        g.fillRect(topLeftCorner.x, topLeftCorner.y, size, size);
+    }
+
     /*
      * solve the equation for y = mx + c for p1 and p2
      * so that we have an equation for a line
