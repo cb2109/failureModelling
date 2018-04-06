@@ -21,4 +21,13 @@ public abstract class PointAsset implements Asset{
         return m.getRiskFor(location);
     }
 
+    @Override
+    public void plot(Graphics g) {
+        // the oval is drawn from the top left not the center like the point we have
+        g.fillOval(location.x - 5, location.y - 5, 10, 10);
+    }
+
+    public Point getLocation() {
+        return location;
+    }
 }

@@ -5,10 +5,10 @@ import cb2109.failuremodelling.modelling.riskmaps.equations.CircleEquation;
 import cb2109.failuremodelling.modelling.riskmaps.equations.Equation;
 import cb2109.failuremodelling.modelling.riskmaps.equations.NoEquation;
 import cb2109.failuremodelling.modelling.riskmaps.equations.RectangleEquation;
+import cb2109.failuremodelling.visualisation.RiskColorModel;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collection;
 
 /**
  * Author: Christopher Bates
@@ -56,7 +56,13 @@ public class EquationRiskMap implements RiskMap {
         return currentEquation.getIntensity();
     }
 
-    public Collection<Equation> getEquations() {
-        return equations;
+    @Override
+    public void plot(Graphics map, RiskColorModel colorModel) {
+        for (Equation e : equations) {
+            map.setColor(colorModel.getColor(e.getIntensity()));
+            e.plot(map);
+        }
     }
+
+
 }

@@ -80,7 +80,8 @@ public class CircleEquation extends ShapeEquation {
 
     @Override
     public void plot(Graphics g) {
-        int size = (int) Math.round(radius * 2);
-        g.fillOval(center.x, center.y, size, size);
+        int roundedRadius = (int) Math.round(radius);
+        int size = roundedRadius * 2;
+        g.fillOval(center.x - roundedRadius, center.y - roundedRadius, size, size);
     }
 }

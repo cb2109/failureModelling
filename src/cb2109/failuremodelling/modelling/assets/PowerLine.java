@@ -22,4 +22,8 @@ public class PowerLine extends LineAsset {
     public CombinedRiskMap combineRiskMaps(RiskMap m1, RiskMap m2) {
         return new DefaultCombinedRiskMap(m1, m2);
     }
+
+    public String getName() {
+        return "Power Line";
+    }
 }
