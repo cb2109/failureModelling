@@ -1,9 +1,9 @@
 package cb2109.failuremodelling.modelling.assets;
 
-import cb2109.failuremodelling.modelling.riskmaps.riskmapcombiner.CombinedRiskMap;
 import cb2109.failuremodelling.modelling.riskmaps.RiskMap;
 
 import java.awt.*;
+import java.util.Collection;
 
 /**
  * Author: Christopher Bates
@@ -14,7 +14,7 @@ public interface Asset {
 
     RiskMap multiplyRiskMap(RiskMap m);
 
-    CombinedRiskMap combineRiskMaps(RiskMap m1, RiskMap m2);
+    RiskMap combineRiskMaps(Collection<RiskMap> riskMaps);
 
     void plot(Graphics map);
 
