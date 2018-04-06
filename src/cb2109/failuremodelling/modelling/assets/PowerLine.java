@@ -1,8 +1,8 @@
 package cb2109.failuremodelling.modelling.assets;
 
 import cb2109.failuremodelling.modelling.Line;
-import cb2109.failuremodelling.modelling.riskmapcombiner.CombinedRiskMap;
-import cb2109.failuremodelling.modelling.riskmapcombiner.DefaultCombinedRiskMap;
+import cb2109.failuremodelling.modelling.riskmaps.riskmapcombiner.CombinedRiskMap;
+import cb2109.failuremodelling.modelling.riskmaps.riskmapcombiner.DefaultCombinedRiskMap;
 import cb2109.failuremodelling.modelling.riskmaps.RiskMap;
 
 /**

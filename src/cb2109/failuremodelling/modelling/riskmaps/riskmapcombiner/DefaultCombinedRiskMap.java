@@ -1,4 +1,4 @@
-package cb2109.failuremodelling.modelling.riskmapcombiner;
+package cb2109.failuremodelling.modelling.riskmaps.riskmapcombiner;
 
 import cb2109.failuremodelling.modelling.riskmaps.RiskMap;
 
