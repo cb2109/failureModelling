@@ -1,9 +1,8 @@
 package cb2109.failuremodelling.modelling;
 
-import cb2109.failuremodelling.modelling.Line;
 import cb2109.failuremodelling.modelling.assets.Asset;
 import cb2109.failuremodelling.modelling.assets.PowerLine;
-import cb2109.failuremodelling.modelling.riskmaps.EquationRiskMap;
+import cb2109.failuremodelling.modelling.riskmaps.ShapeRiskMap;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -17,7 +16,7 @@ public class LineAssetTest {
 
     @Test
     public void testLineIntersectionWithSquare() {
-        EquationRiskMap map = new EquationRiskMap();
+        ShapeRiskMap map = new ShapeRiskMap();
         map.addNewRectangle(new Point(10, 10), new Point(20, 20), 1, 1);
 
         Asset intersectingLine = new PowerLine(new Line(new Point(5, 5), new Point(15, 15)));
@@ -48,7 +47,7 @@ public class LineAssetTest {
     @Test
     public void testLineIntersectionWithCircle() {
 
-        EquationRiskMap map = new EquationRiskMap();
+        ShapeRiskMap map = new ShapeRiskMap();
         map.addNewCircle(new Point(20, 20), 5, 1, 1);
 
         Asset intersectingLine = new PowerLine(new Line(new Point(5, 5), new Point(20, 20)));

@@ -1,14 +1,14 @@
-package cb2109.failuremodelling.modelling.riskmaps.equations;
+package cb2109.failuremodelling.modelling.riskmaps.riskshapes;
 
 /**
  * Author: Christopher Bates
  * Date: 05/04/2018
  */
-public abstract class ShapeEquation implements Equation {
+public abstract class BasicRiskShape implements RiskShape {
     private final double intensity;
     private final double level;
 
-    ShapeEquation(double intensity, double level) {
+    BasicRiskShape(double intensity, double level) {
         this.intensity = intensity;
         this.level = level;
     }

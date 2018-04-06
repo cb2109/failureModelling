@@ -2,7 +2,7 @@ package cb2109.failuremodelling.modelling;
 
 import cb2109.failuremodelling.modelling.assets.Asset;
 import cb2109.failuremodelling.modelling.assets.SubStationAsset;
-import cb2109.failuremodelling.modelling.riskmaps.EquationRiskMap;
+import cb2109.failuremodelling.modelling.riskmaps.ShapeRiskMap;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -21,7 +21,7 @@ public class PointAssetTest {
         Asset assetTopCenter = new SubStationAsset(new Point(2, 0));
         Asset assetMiddleCircle = new SubStationAsset(new Point(2, 2));
 
-        EquationRiskMap map = new EquationRiskMap();
+        ShapeRiskMap map = new ShapeRiskMap();
         map.addNewCircle(new Point(2, 2), 2, 1, 1);
 
         Assert.assertEquals("Top left point is within bounds", 0, assetTopLeft.calculateRisk(map), 0);
@@ -43,7 +43,7 @@ public class PointAssetTest {
         Asset assetRightInside= new SubStationAsset(new Point(3, 2));
         Asset fullyInside = new SubStationAsset(new Point(2, 2));
 
-        EquationRiskMap map = new EquationRiskMap();
+        ShapeRiskMap map = new ShapeRiskMap();
         map.addNewRectangle(new Point(1, 1), new Point(3,3), 1, 1);
 
         Assert.assertEquals("Above point is within bounds", 0, assetAbove.calculateRisk(map), 0);

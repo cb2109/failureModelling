@@ -1,4 +1,4 @@
-package cb2109.failuremodelling.modelling.riskmaps.equations;
+package cb2109.failuremodelling.modelling.riskmaps.riskshapes;
 
 import cb2109.failuremodelling.modelling.Line;
 
@@ -8,12 +8,12 @@ import java.awt.*;
  * Author: Christopher Bates
  * Date: 05/04/2018
  */
-public class RectangleEquation extends ShapeEquation {
+public class RectangleRiskShape extends BasicRiskShape {
     private final Point topLeftCorner;
     private final Point bottomRightCorner;
 
 
-    public RectangleEquation(Point topLeftCorner, Point bottomRightCorner, double intensity, double level) {
+    public RectangleRiskShape(Point topLeftCorner, Point bottomRightCorner, double intensity, double level) {
         super(intensity, level);
         this.topLeftCorner = topLeftCorner;
         this.bottomRightCorner = bottomRightCorner;

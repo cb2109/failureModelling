@@ -1,4 +1,4 @@
-package cb2109.failuremodelling.modelling.riskmaps.equations;
+package cb2109.failuremodelling.modelling.riskmaps.riskshapes;
 
 import cb2109.failuremodelling.modelling.Line;
 
@@ -8,11 +8,11 @@ import java.awt.*;
  * Author: Christopher Bates
  * Date: 05/04/2018
  */
-public class CircleEquation extends ShapeEquation {
+public class CircleRiskShape extends BasicRiskShape {
     private Point center;
     private final double radius;
 
-    public CircleEquation(Point center, double radius, double intensity, double level) {
+    public CircleRiskShape(Point center, double radius, double intensity, double level) {
         super(intensity, level);
         this.center = center;
         this.radius = radius;

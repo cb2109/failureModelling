@@ -4,7 +4,7 @@ import cb2109.failuremodelling.modelling.Line;
 import cb2109.failuremodelling.modelling.assets.Asset;
 import cb2109.failuremodelling.modelling.assets.PowerLine;
 import cb2109.failuremodelling.modelling.assets.SubStationAsset;
-import cb2109.failuremodelling.modelling.riskmaps.EquationRiskMap;
+import cb2109.failuremodelling.modelling.riskmaps.ShapeRiskMap;
 import org.junit.Test;
 
 import javax.imageio.ImageIO;
@@ -32,7 +32,7 @@ public class MapVisualisationTest {
         Visualizer v = new Visualizer(g);
 
 
-        EquationRiskMap rm = new EquationRiskMap();
+        ShapeRiskMap rm = new ShapeRiskMap();
         rm.addNewCircle(new Point(500, 500), 100, 0.9, 1);
         rm.addNewRectangle(new Point(250, 250), new Point(400, 400), 0.5, 1);
 

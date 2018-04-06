@@ -1,4 +1,4 @@
-package cb2109.failuremodelling.modelling.riskmaps.equations;
+package cb2109.failuremodelling.modelling.riskmaps.riskshapes;
 
 import cb2109.failuremodelling.modelling.Line;
 
@@ -11,7 +11,7 @@ import java.awt.*;
  * The base level on our Map. At level 0 and with 0 intensity, this indicates that there is no risk from this
  * particular "threat"
  */
-public class NoEquation implements Equation {
+public class NoRiskShape implements RiskShape {
 
     @Override
     public boolean contains(Point p) {
